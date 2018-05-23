@@ -280,6 +280,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/EOS Currency/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ShichaoXu">
+      <meta itemprop="description" content="All About Blockchain">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="In Blockchain We Trust">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/23/EOS Currency/" itemprop="url">
+                  从零到壹学习EOS - EOS Currency 合约案例
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-23 19:10:41 / 修改时间：19:10:25" itemprop="dateCreated datePublished" datetime="2018-05-23T19:10:41+08:00">2018-05-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;切换到<code>eos/build/programs/cleos</code>路径下面。</p>
+<p>###钱包设置<br>&nbsp;&nbsp;秘钥需要保存好，后面解锁时会用到。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/programs/cleos$ ./cleos wallet create</span><br><span class="line"><span class="string">"/home/mat/work/eos/eos/build/programs/keosd/keosd"</span> launched</span><br><span class="line">Creating wallet: default</span><br><span class="line">Save password to use <span class="keyword">in</span> the future to unlock this wallet.</span><br><span class="line">Without password imported keys will not be retrievable.</span><br><span class="line"><span class="string">"PW5KDg3CFCLuwXgZewJw2kimrNb65TpBS3pDE59KgE3npeQDu36YK"</span></span><br></pre></td></tr></table></figure></p>
+<p>###为账号部署合约<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/programs/cleos$ ./cleos <span class="built_in">set</span> contract eosio ../../contracts/eosio.bios -p eosio </span><br><span class="line">Reading WAST/WASM from ../../contracts/eosio.bios/eosio.bios.wasm...</span><br><span class="line">Using already assembled WASM...</span><br><span class="line">Publishing contract...</span><br><span class="line">Failed to connect to nodeos at http://localhost:8888/; is nodeos running?</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;原来是没运行 node ，仿照前一篇首先把node跑起来，再次执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/programs/cleos$ ./cleos <span class="built_in">set</span> contract eosio ../../contracts/eosio.bios -p eosio </span><br><span class="line">Reading WAST/WASM from ../../contracts/eosio.bios/eosio.bios.wasm...</span><br><span class="line">Using already assembled WASM...</span><br><span class="line">Publishing contract...</span><br><span class="line">executed transaction: 54268ec0ecf8d8c4f7733eff94426b07423e8493688aae57bdd233de0cedd2d7  3704 bytes  1053 us</span><br><span class="line"><span class="comment">#         eosio &lt;= eosio::setcode               &#123;"account":"eosio","vmtype":0,"vmversion":0,"code":"0061736d01000000015c1160037f7e7f0060057f7e7e7e7e...</span></span><br><span class="line"><span class="comment">#         eosio &lt;= eosio::setabi                &#123;"account":"eosio","abi":"0e656f73696f3a3a6162692f312e30050c6163636f756e745f6e616d65046e616d650f7065...</span></span><br></pre></td></tr></table></figure></p>
+<p>###创建2个key，导入key的私钥<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/programs/cleos$ ./cleos create key</span><br><span class="line">Private key: 5J545r41TN3jE6Kyrr2gzhZ44pvt6ZxYzTAF5BvFER9z1ASwGr1</span><br><span class="line">Public key: EOS66auxtgcop3Sjsj8RhY3qPu3JCtE6cMn2itkf4GqyUK6wzRDmy</span><br><span class="line"></span><br><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/programs/cleos$ ./cleos create key </span><br><span class="line">Private key: 5JiDPv19zqBqGnVeohoSQGnMtcd7waovZZmYFNQYgm6Wet5AaZj</span><br><span class="line">Public key: EOS88jezNqP6ETEmLN5Cc6Geq73N5gxcVf1oZuvGQWjQL72LyUXPg</span><br><span class="line"></span><br><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/programs/cleos$ ./cleos wallet import  5J545r41TN3jE6Kyrr2gzhZ44pvt6ZxYzTAF5BvFER9z1ASwGr1</span><br><span class="line">imported private key <span class="keyword">for</span>: EOS66auxtgcop3Sjsj8RhY3qPu3JCtE6cMn2itkf4GqyUK6wzRDmy</span><br><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/programs/cleos$ ./cleos wallet import  5JiDPv19zqBqGnVeohoSQGnMtcd7waovZZmYFNQYgm6Wet5AaZj</span><br><span class="line">imported private key <span class="keyword">for</span>: EOS88jezNqP6ETEmLN5Cc6Geq73N5gxcVf1oZuvGQWjQL72LyUXPg</span><br><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/programs/cleos$</span><br></pre></td></tr></table></figure></p>
+<p>###根据生成的公钥，创建帐号<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/programs/cleos$ ./cleos create account eosio eostoken EOS66auxtgcop3Sjsj8RhY3qPu3JCtE6cMn2itkf4GqyUK6wzRDmy EOS88jezNqP6ETEmLN5Cc6Geq73N5gxcVf1oZuvGQWjQL72LyUXPg</span><br><span class="line">executed transaction: 1945668d549c638eeeeaad483eb905bd9114081edd105ef29b27a3e8d09b203f  200 bytes  245 us</span><br><span class="line"><span class="comment">#         eosio &lt;= eosio::newaccount            &#123;"creator":"eosio","name":"eostoken","owner":&#123;"threshold":1,"keys":[&#123;"key":"EOS66auxtgcop3Sjsj8RhY3q...</span></span><br><span class="line">warning: transaction executed locally, but may not be confirmed by the network yet</span><br></pre></td></tr></table></figure></p>
+<p>###查看账号信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/programs/cleos$ ./cleos get account eostoken</span><br><span class="line">privileged: <span class="literal">false</span></span><br><span class="line">permissions: </span><br><span class="line">     owner     1:    1 EOS66auxtgcop3Sjsj8RhY3qPu3JCtE6cMn2itkf4GqyUK6wzRDmy</span><br><span class="line">        active     1:    1 EOS88jezNqP6ETEmLN5Cc6Geq73N5gxcVf1oZuvGQWjQL72LyUXPg</span><br><span class="line">memory: </span><br><span class="line">     quota:        -1 bytes  used:      2.66 Kb   </span><br><span class="line"></span><br><span class="line">net bandwidth: (averaged over 3 days)</span><br><span class="line">     used:                -1 bytes</span><br><span class="line">     available:           -1 bytes</span><br><span class="line">     <span class="built_in">limit</span>:               -1 bytes</span><br><span class="line"></span><br><span class="line">cpu bandwidth: (averaged over 3 days)</span><br><span class="line">     used:                -1 us   </span><br><span class="line">     available:           -1 us   </span><br><span class="line">     <span class="built_in">limit</span>:               -1 us</span><br></pre></td></tr></table></figure></p>
+<p>我不知道出现这个结果是不是对的？或者dawn-4.0 修改了输出格式了?   23333</p>
+<p>###检测，并部署合约<br>。。。。（额，这个貌似dawn-v4.1.0 在 contracts 下 已经没有currency目录了，最关键的 currency 暂时玩不了了。。）</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/Learn-eos/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -759,7 +907,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
