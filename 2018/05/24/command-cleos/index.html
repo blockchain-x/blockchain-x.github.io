@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="查看 cleos 命令12345678910111213141516171819202122232425mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos ERROR: RequiredError: Subcommand requiredCommand Line Interface to EOSIO ClientUsage:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零到壹学习EOS - cleos 命令">
+<meta property="og:url" content="http://yoursite.com/2018/05/24/command-cleos/index.html">
+<meta property="og:site_name" content="In Blockchain We Trust">
+<meta property="og:description" content="查看 cleos 命令12345678910111213141516171819202122232425mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos ERROR: RequiredError: Subcommand requiredCommand Line Interface to EOSIO ClientUsage:">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-24T11:29:22.375Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零到壹学习EOS - cleos 命令">
+<meta name="twitter:description" content="查看 cleos 命令12345678910111213141516171819202122232425mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos ERROR: RequiredError: Subcommand requiredCommand Line Interface to EOSIO ClientUsage:">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/24/command-cleos/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>从零到壹学习EOS - cleos 命令 | In Blockchain We Trust</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">In Blockchain We Trust</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/command-cleos/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ShichaoXu">
+      <meta itemprop="description" content="All About Blockchain">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="In Blockchain We Trust">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从零到壹学习EOS - cleos 命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-24 19:29:41 / 修改时间：19:29:22" itemprop="dateCreated datePublished" datetime="2018-05-24T19:29:41+08:00">2018-05-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="查看-cleos-命令"><a href="#查看-cleos-命令" class="headerlink" title="查看 cleos 命令"></a>查看 cleos 命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos </span><br><span class="line">ERROR: RequiredError: Subcommand required</span><br><span class="line">Command Line Interface to EOSIO Client</span><br><span class="line">Usage: cleos [OPTIONS] SUBCOMMAND</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -h,--<span class="built_in">help</span>                   Print this <span class="built_in">help</span> message and <span class="built_in">exit</span></span><br><span class="line">  -u,--url TEXT=http://localhost:8888/</span><br><span class="line">                              the http/https URL <span class="built_in">where</span> nodeos is running</span><br><span class="line">  --wallet-url TEXT=http://localhost:8900/</span><br><span class="line">                              the http/https URL <span class="built_in">where</span> keosd is running</span><br><span class="line">  -v,--verbose                output verbose actions on error</span><br><span class="line"></span><br><span class="line">Subcommands:</span><br><span class="line">  version                     Retrieve version information</span><br><span class="line">  create                      Create various items, on and off the blockchain</span><br><span class="line">  get                         Retrieve various items and information from the blockchain</span><br><span class="line">  <span class="built_in">set</span>                         Set or update blockchain state</span><br><span class="line">  transfer                    Transfer EOS from account to account</span><br><span class="line">  net                         Interact with <span class="built_in">local</span> p2p network connections</span><br><span class="line">  wallet                      Interact with <span class="built_in">local</span> wallet</span><br><span class="line">  sign                        Sign a transaction</span><br><span class="line">  push                        Push arbitrary transactions to the blockchain</span><br><span class="line">  multisig                    Multisig contract commands</span><br><span class="line">  system                      Send eosio.system contract action to the blockchain.</span><br></pre></td></tr></table></figure>
+<h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><p>&nbsp;&nbsp;version 中<code>cleos version client</code> 返回客户端的版本信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos version client</span><br><span class="line">Build version: cd979827</span><br></pre></td></tr></table></figure></p>
+<h3 id="create"><a href="#create" class="headerlink" title="create"></a>create</h3><p>&nbsp;&nbsp;<code>cleos create</code> 主要包含 key 和 account两个子命令</p>
+<h4 id="cleos-create-key"><a href="#cleos-create-key" class="headerlink" title="cleos create key"></a>cleos create key</h4><p>&nbsp;&nbsp;创建一对新的公钥和私钥<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos create key</span><br><span class="line">Private key: 5KaYbAkqEUNqEUbbywwJJ9Ui6PSjg28MCtvctW4xMQYsRZHJk8u</span><br><span class="line">Public key: EOS8XYXR5hXgyJ8tVzPRfGm4KCWDWNdZ7hhy7yzwjKd9QkpuHYWoH</span><br></pre></td></tr></table></figure></p>
+<h4 id="cleos-create-account"><a href="#cleos-create-account" class="headerlink" title="cleos create account"></a>cleos create account</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos create account</span><br><span class="line">ERROR: RequiredError: creator</span><br><span class="line">Create an account, buy ram, stake <span class="keyword">for</span> bandwidth <span class="keyword">for</span> the account</span><br><span class="line">Usage: cleos create account [OPTIONS] creator name OwnerKey [ActiveKey]</span><br><span class="line"></span><br><span class="line">Positionals:</span><br><span class="line">  creator TEXT                The name of the account creating the new account</span><br><span class="line">  name TEXT                   The name of the new account</span><br><span class="line">  OwnerKey TEXT               The owner public key <span class="keyword">for</span> the new account</span><br><span class="line">  ActiveKey TEXT              The active public key <span class="keyword">for</span> the new account</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -h,--<span class="built_in">help</span>                   Print this <span class="built_in">help</span> message and <span class="built_in">exit</span></span><br><span class="line">  -x,--expiration             <span class="built_in">set</span> the time <span class="keyword">in</span> seconds before a transaction expires, defaults to 30s</span><br><span class="line">  -f,--force-unique           force the transaction to be unique. this will consume extra bandwidth and remove any protections against accidently issuing the same transaction multiple <span class="built_in">times</span></span><br><span class="line">  -s,--skip-sign              Specify <span class="keyword">if</span> unlocked wallet keys should be used to sign transaction</span><br><span class="line">  -j,--json                   <span class="built_in">print</span> result as json</span><br><span class="line">  -d,--dont-broadcast         don<span class="string">'t broadcast transaction to the network (just print to stdout)</span></span><br><span class="line"><span class="string">  -r,--ref-block TEXT         set the reference block num or block id used for TAPOS (Transaction as Proof-of-Stake)</span></span><br><span class="line"><span class="string">  -p,--permission TEXT ...    An account and permission level to authorize, as in '</span>account@permission<span class="string">'</span></span><br><span class="line"><span class="string">  --max-cpu-usage-ms UINT     set an upper limit on the milliseconds of cpu usage budget, for the execution of the transaction (defaults to 0 which means no limit)</span></span><br><span class="line"><span class="string">  --max-net-usage UINT        set an upper limit on the net usage budget, in bytes, for the transaction (defaults to 0 which means no limit)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos create account -j  eosio mytest EOS8XYXR5hXgyJ8tVzPRfGm4KCWDWNdZ7hhy7yzwjKd9QkpuHYWoH EOS8XYXR5hXgyJ8tVzPRfGm4KCWDWNdZ7hhy7yzwjKd9QkpuHYWoH</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"transaction_id"</span>: <span class="string">"bcde012f61076f2924e66bf29bd49b22cbfe8a818c9efa391b543bee1e3650b4"</span>,</span><br><span class="line">  <span class="string">"processed"</span>: &#123;</span><br><span class="line">    <span class="string">"id"</span>: <span class="string">"bcde012f61076f2924e66bf29bd49b22cbfe8a818c9efa391b543bee1e3650b4"</span>,</span><br><span class="line">    <span class="string">"receipt"</span>: &#123;</span><br><span class="line">      <span class="string">"status"</span>: <span class="string">"executed"</span>,</span><br><span class="line">      <span class="string">"cpu_usage_us"</span>: 471,</span><br><span class="line">      <span class="string">"net_usage_words"</span>: 25</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"elapsed"</span>: 471,</span><br><span class="line">    <span class="string">"net_usage"</span>: 200,</span><br><span class="line">    <span class="string">"scheduled"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="string">"action_traces"</span>: [&#123;</span><br><span class="line">        <span class="string">"receipt"</span>: &#123;</span><br><span class="line">          <span class="string">"receiver"</span>: <span class="string">"eosio"</span>,</span><br><span class="line">          <span class="string">"act_digest"</span>: <span class="string">"6e3b85feca2b572c81bd082a1ff146870c5c13fd7300cd10744a99482bb914fb"</span>,</span><br><span class="line">          <span class="string">"global_sequence"</span>: 20517,</span><br><span class="line">          <span class="string">"recv_sequence"</span>: 20517,</span><br><span class="line">          <span class="string">"auth_sequence"</span>: [[</span><br><span class="line">              <span class="string">"eosio"</span>,</span><br><span class="line">              20515</span><br><span class="line">            ]</span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"code_sequence"</span>: 1,</span><br><span class="line">          <span class="string">"abi_sequence"</span>: 1</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"act"</span>: &#123;</span><br><span class="line">          <span class="string">"account"</span>: <span class="string">"eosio"</span>,</span><br><span class="line">          <span class="string">"name"</span>: <span class="string">"newaccount"</span>,</span><br><span class="line">          <span class="string">"authorization"</span>: [&#123;</span><br><span class="line">              <span class="string">"actor"</span>: <span class="string">"eosio"</span>,</span><br><span class="line">              <span class="string">"permission"</span>: <span class="string">"active"</span></span><br><span class="line">            &#125;</span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"data"</span>: &#123;</span><br><span class="line">            <span class="string">"creator"</span>: <span class="string">"eosio"</span>,</span><br><span class="line">            <span class="string">"name"</span>: <span class="string">"mytest"</span>,</span><br><span class="line">            <span class="string">"owner"</span>: &#123;</span><br><span class="line">              <span class="string">"threshold"</span>: 1,</span><br><span class="line">              <span class="string">"keys"</span>: [&#123;</span><br><span class="line">                  <span class="string">"key"</span>: <span class="string">"EOS8XYXR5hXgyJ8tVzPRfGm4KCWDWNdZ7hhy7yzwjKd9QkpuHYWoH"</span>,</span><br><span class="line">                  <span class="string">"weight"</span>: 1</span><br><span class="line">                &#125;</span><br><span class="line">              ],</span><br><span class="line">              <span class="string">"accounts"</span>: [],</span><br><span class="line">              <span class="string">"waits"</span>: []</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"active"</span>: &#123;</span><br><span class="line">              <span class="string">"threshold"</span>: 1,</span><br><span class="line">              <span class="string">"keys"</span>: [&#123;</span><br><span class="line">                  <span class="string">"key"</span>: <span class="string">"EOS8XYXR5hXgyJ8tVzPRfGm4KCWDWNdZ7hhy7yzwjKd9QkpuHYWoH"</span>,</span><br><span class="line">                  <span class="string">"weight"</span>: 1</span><br><span class="line">                &#125;</span><br><span class="line">              ],</span><br><span class="line">              <span class="string">"accounts"</span>: [],</span><br><span class="line">              <span class="string">"waits"</span>: []</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="string">"hex_data"</span>: <span class="string">"0000000000ea30550000000064acb29701000000010003df39b8bee0cb0d5b068c2a658280a0554a8a6b543428e38ad70b53163b0cbf030100000001000000010003df39b8bee0cb0d5b068c2a658280a0554a8a6b543428e38ad70b53163b0cbf0301000000"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"elapsed"</span>: 115,</span><br><span class="line">        <span class="string">"cpu_usage"</span>: 0,</span><br><span class="line">        <span class="string">"console"</span>: <span class="string">""</span>,</span><br><span class="line">        <span class="string">"total_cpu_usage"</span>: 0,</span><br><span class="line">        <span class="string">"trx_id"</span>: <span class="string">"bcde012f61076f2924e66bf29bd49b22cbfe8a818c9efa391b543bee1e3650b4"</span>,</span><br><span class="line">        <span class="string">"inline_traces"</span>: []</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"except"</span>: null</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get</span><br><span class="line">ERROR: RequiredError: Subcommand required</span><br><span class="line">Retrieve various items and information from the blockchain</span><br><span class="line">Usage: cleos get SUBCOMMAND</span><br><span class="line"></span><br><span class="line">Subcommands:</span><br><span class="line">  info                        Get current blockchain information</span><br><span class="line">  block                       Retrieve a full block from the blockchain</span><br><span class="line">  account                     Retrieve an account from the blockchain</span><br><span class="line">  code                        Retrieve the code and ABI <span class="keyword">for</span> an account</span><br><span class="line">  table                       Retrieve the contents of a database table</span><br><span class="line">  currency                    Retrieve information related to standard currencies</span><br><span class="line">  accounts                    Retrieve accounts associated with a public key</span><br><span class="line">  servants                    Retrieve accounts <span class="built_in">which</span> are servants of a given account </span><br><span class="line">  transaction                 Retrieve a transaction from the blockchain</span><br><span class="line">  actions                     Retrieve all actions with specific account name referenced <span class="keyword">in</span> authorization or receiver</span><br></pre></td></tr></table></figure>
+<h4 id="cleos-get-info"><a href="#cleos-get-info" class="headerlink" title="cleos get info"></a>cleos get info</h4><p>&nbsp; &nbsp; 获取当前区块链的信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get info</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"server_version"</span>: <span class="string">"cd979827"</span>,</span><br><span class="line">  <span class="string">"head_block_num"</span>: 26251,</span><br><span class="line">  <span class="string">"last_irreversible_block_num"</span>: 26250,</span><br><span class="line">  <span class="string">"last_irreversible_block_id"</span>: <span class="string">"0000668a7cadea57673f893800933b12a83351ab100bb57f62ce0bc65eb289b6"</span>,</span><br><span class="line">  <span class="string">"head_block_id"</span>: <span class="string">"0000668bd55a72dfeea903bc00483181e5389076c575f4ef3c7dc450cbcbd2e3"</span>,</span><br><span class="line">  <span class="string">"head_block_time"</span>: <span class="string">"2018-05-24T09:59:29"</span>,</span><br><span class="line">  <span class="string">"head_block_producer"</span>: <span class="string">"eosio"</span>,</span><br><span class="line">  <span class="string">"virtual_block_cpu_limit"</span>: 100000000,</span><br><span class="line">  <span class="string">"virtual_block_net_limit"</span>: 1048576000,</span><br><span class="line">  <span class="string">"block_cpu_limit"</span>: 99900,</span><br><span class="line">  <span class="string">"block_net_limit"</span>: 1048576</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="cleos-get-block"><a href="#cleos-get-block" class="headerlink" title="cleos get block"></a>cleos get block</h4><p>&nbsp;&nbsp; 根据 block的块号 ( block_num ) 和 id 进行查询。<br>&nbsp;&nbsp; <code>cleos get block 110</code> 根据区块的 block_num 进行查询。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get block 110</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"timestamp"</span>: <span class="string">"2018-05-20T14:15:04.500"</span>,</span><br><span class="line">  <span class="string">"producer"</span>: <span class="string">"eosio"</span>,</span><br><span class="line">  <span class="string">"confirmed"</span>: 0,</span><br><span class="line">  <span class="string">"previous"</span>: <span class="string">"0000006d77cd40e5237b42e7363ad69169cdd0007e48adace1d4af67893a7f09"</span>,</span><br><span class="line">  <span class="string">"transaction_mroot"</span>: <span class="string">"0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="string">"action_mroot"</span>: <span class="string">"311c843cf0776c34481bca1c44f8500975725937559c32daf0e6cf1156e98c57"</span>,</span><br><span class="line">  <span class="string">"schedule_version"</span>: 0,</span><br><span class="line">  <span class="string">"new_producers"</span>: null,</span><br><span class="line">  <span class="string">"header_extensions"</span>: [],</span><br><span class="line">  <span class="string">"producer_signature"</span>: <span class="string">"SIG_K1_JzsytXVa2E3g8bAaPRmXL6faeTeiMVVEpBEexV7FJJ77cSgYBg2haRVtuEW6oWvuiBwHhforjboYYKHkEjxjhTjShQo2wg"</span>,</span><br><span class="line">  <span class="string">"transactions"</span>: [],</span><br><span class="line">  <span class="string">"block_extensions"</span>: [],</span><br><span class="line">  <span class="string">"id"</span>: <span class="string">"0000006eb3d79a21d0e4980212ed69a4e4e70b9576958f6872b698a43d0655b3"</span>,</span><br><span class="line">  <span class="string">"block_num"</span>: 110,</span><br><span class="line">  <span class="string">"ref_block_prefix"</span>: 43574480</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>cleos get block 0000006eb3d79a21d0e4980212ed69a4e4e70b9576958f6872b698a43d0655b3</code> 根据区块的 id 进行查询<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get block 0000006eb3d79a21d0e4980212ed69a4e4e70b9576958f6872b698a43d0655b3</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"timestamp"</span>: <span class="string">"2018-05-20T14:15:04.500"</span>,</span><br><span class="line">  <span class="string">"producer"</span>: <span class="string">"eosio"</span>,</span><br><span class="line">  <span class="string">"confirmed"</span>: 0,</span><br><span class="line">  <span class="string">"previous"</span>: <span class="string">"0000006d77cd40e5237b42e7363ad69169cdd0007e48adace1d4af67893a7f09"</span>,</span><br><span class="line">  <span class="string">"transaction_mroot"</span>: <span class="string">"0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="string">"action_mroot"</span>: <span class="string">"311c843cf0776c34481bca1c44f8500975725937559c32daf0e6cf1156e98c57"</span>,</span><br><span class="line">  <span class="string">"schedule_version"</span>: 0,</span><br><span class="line">  <span class="string">"new_producers"</span>: null,</span><br><span class="line">  <span class="string">"header_extensions"</span>: [],</span><br><span class="line">  <span class="string">"producer_signature"</span>: <span class="string">"SIG_K1_JzsytXVa2E3g8bAaPRmXL6faeTeiMVVEpBEexV7FJJ77cSgYBg2haRVtuEW6oWvuiBwHhforjboYYKHkEjxjhTjShQo2wg"</span>,</span><br><span class="line">  <span class="string">"transactions"</span>: [],</span><br><span class="line">  <span class="string">"block_extensions"</span>: [],</span><br><span class="line">  <span class="string">"id"</span>: <span class="string">"0000006eb3d79a21d0e4980212ed69a4e4e70b9576958f6872b698a43d0655b3"</span>,</span><br><span class="line">  <span class="string">"block_num"</span>: 110,</span><br><span class="line">  <span class="string">"ref_block_prefix"</span>: 43574480</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="cleos-get-account"><a href="#cleos-get-account" class="headerlink" title="cleos get account"></a>cleos get account</h4><p>&nbsp; &nbsp; 获取相应的账号信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get account mytest</span><br><span class="line">privileged: <span class="literal">false</span></span><br><span class="line">permissions: </span><br><span class="line">     owner     1:    1 EOS8XYXR5hXgyJ8tVzPRfGm4KCWDWNdZ7hhy7yzwjKd9QkpuHYWoH</span><br><span class="line">        active     1:    1 EOS8XYXR5hXgyJ8tVzPRfGm4KCWDWNdZ7hhy7yzwjKd9QkpuHYWoH</span><br><span class="line">memory: </span><br><span class="line">     quota:        -1 bytes  used:      2.66 Kb   </span><br><span class="line"></span><br><span class="line">net bandwidth: (averaged over 3 days)</span><br><span class="line">     used:                -1 bytes</span><br><span class="line">     available:           -1 bytes</span><br><span class="line">     <span class="built_in">limit</span>:               -1 bytes</span><br><span class="line"></span><br><span class="line">cpu bandwidth: (averaged over 3 days)</span><br><span class="line">     used:                -1 us   </span><br><span class="line">     available:           -1 us   </span><br><span class="line">     <span class="built_in">limit</span>:               -1 us</span><br></pre></td></tr></table></figure></p>
+<h4 id="cleos-get-code"><a href="#cleos-get-code" class="headerlink" title="cleos get code"></a>cleos get code</h4><p>&nbsp; &nbsp;返回指定账户名的代码信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get code mytest</span><br><span class="line">code <span class="built_in">hash</span>: 0000000000000000000000000000000000000000000000000000000000000000</span><br></pre></td></tr></table></figure></p>
+<h4 id="cleos-get-table"><a href="#cleos-get-table" class="headerlink" title="cleos get table"></a>cleos get table</h4><p>&nbsp; &nbsp;返回指定表信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get table</span><br><span class="line">ERROR: RequiredError: contract</span><br><span class="line">Retrieve the contents of a database table</span><br><span class="line">Usage: cleos get table [OPTIONS] contract scope table</span><br><span class="line"></span><br><span class="line">Positionals:</span><br><span class="line">  contract TEXT               The contract who owns the table</span><br><span class="line">  scope TEXT                  The scope within the contract <span class="keyword">in</span> <span class="built_in">which</span> the table is found</span><br><span class="line">  table TEXT                  The name of the table as specified by the contract abi</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -b,--binary UINT            Return the value as BINARY rather than using abi to interpret as JSON</span><br><span class="line">  -l,--<span class="built_in">limit</span> UINT             The maximum number of rows to <span class="built_in">return</span></span><br><span class="line">  -k,--key TEXT               The name of the key to index by as defined by the abi, defaults to primary key</span><br><span class="line">  -L,--lower TEXT             JSON representation of lower bound value of key, defaults to first</span><br><span class="line">  -U,--upper TEXT             JSON representation of upper bound value value of key, defaults to last</span><br></pre></td></tr></table></figure></p>
+<h3 id="cleos-get-currency"><a href="#cleos-get-currency" class="headerlink" title="cleos get currency"></a>cleos get currency</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get currency </span><br><span class="line">ERROR: RequiredError: Subcommand required</span><br><span class="line">Retrieve information related to standard currencies</span><br><span class="line">Usage: cleos get currency [OPTIONS] SUBCOMMAND</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -h,--<span class="built_in">help</span>                   Print this <span class="built_in">help</span> message and <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">Subcommands:</span><br><span class="line">  balance                     Retrieve the balance of an account <span class="keyword">for</span> a given currency</span><br><span class="line">  stats                       Retrieve the stats of <span class="keyword">for</span> a given currency</span><br></pre></td></tr></table></figure>
+<h4 id="cleos-get-currency-balance"><a href="#cleos-get-currency-balance" class="headerlink" title="cleos get currency balance"></a>cleos get currency balance</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get currency balance</span><br><span class="line">ERROR: RequiredError: contract</span><br><span class="line">Retrieve the balance of an account <span class="keyword">for</span> a given currency</span><br><span class="line">Usage: cleos get currency balance contract account [symbol]</span><br><span class="line"></span><br><span class="line">Positionals:</span><br><span class="line">  contract TEXT               The contract that operates the currency</span><br><span class="line">  account TEXT                The account to query balances <span class="keyword">for</span></span><br><span class="line">  symbol TEXT                 The symbol <span class="keyword">for</span> the currency <span class="keyword">if</span> the contract operates multiple currencies</span><br></pre></td></tr></table></figure>
+<h4 id="cleos-get-currency-stats"><a href="#cleos-get-currency-stats" class="headerlink" title="cleos get currency stats"></a>cleos get currency stats</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get currency stats</span><br><span class="line">ERROR: RequiredError: contract</span><br><span class="line">Retrieve the stats of <span class="keyword">for</span> a given currency</span><br><span class="line">Usage: cleos get currency stats contract symbol</span><br><span class="line"></span><br><span class="line">Positionals:</span><br><span class="line">  contract TEXT               The contract that operates the currency</span><br><span class="line">  symbol TEXT                 The symbol <span class="keyword">for</span> the currency <span class="keyword">if</span> the contract operates multiple currencies</span><br></pre></td></tr></table></figure>
+<h4 id="cleos-get-accounts"><a href="#cleos-get-accounts" class="headerlink" title="cleos get accounts"></a>cleos get accounts</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get accounts</span><br><span class="line">ERROR: RequiredError: public_key</span><br><span class="line">Retrieve accounts associated with a public key</span><br><span class="line">Usage: cleos get accounts public_key</span><br><span class="line"></span><br><span class="line">Positionals:</span><br><span class="line">  public_key TEXT             The public key to retrieve accounts <span class="keyword">for</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get accounts EOS8XYXR5hXgyJ8tVzPRfGm4KCWDWNdZ7hhy7yzwjKd9QkpuHYWoH</span><br><span class="line">Error 3110003: Missing History API Plugin</span><br><span class="line">Ensure that you have eosio::history_api_plugin added to your node<span class="string">'s configuration!</span></span><br><span class="line"><span class="string">Error Details:</span></span><br><span class="line"><span class="string">History API plugin is not enabled</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;返回检查node的配置，加入一项<code>plugin = eosio::history_api_plugin</code>   发现node无法正常启动，这个还无法解决。TODO</p>
+<h4 id="cleos-get-servants"><a href="#cleos-get-servants" class="headerlink" title="cleos get servants"></a>cleos get servants</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get servants</span><br><span class="line">ERROR: RequiredError: account</span><br><span class="line">Retrieve accounts <span class="built_in">which</span> are servants of a given account </span><br><span class="line">Usage: cleos get servants account</span><br><span class="line"></span><br><span class="line">Positionals:</span><br><span class="line">  account TEXT                The name of the controlling account</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get servants eosio</span><br><span class="line">Error 3110003: Missing History API Plugin</span><br><span class="line">Ensure that you have eosio::history_api_plugin added to your node<span class="string">'s configuration!</span></span><br><span class="line"><span class="string">Error Details:</span></span><br><span class="line"><span class="string">History API plugin is not enabled</span></span><br></pre></td></tr></table></figure>
+<h4 id="cleos-get-transactions"><a href="#cleos-get-transactions" class="headerlink" title="cleos get transactions"></a>cleos get transactions</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos get transactions</span><br><span class="line">ERROR: RequiredError: Subcommand required</span><br><span class="line">Retrieve various items and information from the blockchain</span><br><span class="line">Usage: cleos get SUBCOMMAND</span><br><span class="line"></span><br><span class="line">Subcommands:</span><br><span class="line">  info                        Get current blockchain information</span><br><span class="line">  block                       Retrieve a full block from the blockchain</span><br><span class="line">  account                     Retrieve an account from the blockchain</span><br><span class="line">  code                        Retrieve the code and ABI <span class="keyword">for</span> an account</span><br><span class="line">  table                       Retrieve the contents of a database table</span><br><span class="line">  currency                    Retrieve information related to standard currencies</span><br><span class="line">  accounts                    Retrieve accounts associated with a public key</span><br><span class="line">  servants                    Retrieve accounts <span class="built_in">which</span> are servants of a given account </span><br><span class="line">  transaction                 Retrieve a transaction from the blockchain</span><br><span class="line">  actions                     Retrieve all actions with specific account name referenced <span class="keyword">in</span> authorization or receiver</span><br></pre></td></tr></table></figure>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos <span class="built_in">set</span></span><br><span class="line">ERROR: RequiredError: Subcommand required</span><br><span class="line">Set or update blockchain state</span><br><span class="line">Usage: cleos <span class="built_in">set</span> [OPTIONS] SUBCOMMAND</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -h,--<span class="built_in">help</span>                   Print this <span class="built_in">help</span> message and <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">Subcommands:</span><br><span class="line">  code                        Create or update the code on an account</span><br><span class="line">  abi                         Create or update the abi on an account</span><br><span class="line">  contract                    Create or update the contract on an account</span><br><span class="line">  account                     <span class="built_in">set</span> or update blockchain account state</span><br><span class="line">  action                      <span class="built_in">set</span> or update blockchain action state</span><br></pre></td></tr></table></figure>
+<h4 id="cleos-set-contract"><a href="#cleos-set-contract" class="headerlink" title="cleos set contract"></a>cleos set contract</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos <span class="built_in">set</span> contract</span><br><span class="line">ERROR: RequiredError: account</span><br><span class="line">Create or update the contract on an account</span><br><span class="line">Usage: cleos <span class="built_in">set</span> contract [OPTIONS] account contract-dir [wast-file] [abi-file]</span><br><span class="line"></span><br><span class="line">Positionals:</span><br><span class="line">  account TEXT                The account to publish a contract <span class="keyword">for</span></span><br><span class="line">  contract-dir TEXT           The path containing the .wast and .abi</span><br><span class="line">  wast-file TEXT              The file containing the contract WAST or WASM relative to contract-dir</span><br><span class="line">  abi-file TEXT               The ABI <span class="keyword">for</span> the contract relative to contract-dir</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -h,--<span class="built_in">help</span>                   Print this <span class="built_in">help</span> message and <span class="built_in">exit</span></span><br><span class="line">  -a,--abi TEXT               The ABI <span class="keyword">for</span> the contract relative to contract-dir</span><br><span class="line">  -x,--expiration             <span class="built_in">set</span> the time <span class="keyword">in</span> seconds before a transaction expires, defaults to 30s</span><br><span class="line">  -f,--force-unique           force the transaction to be unique. this will consume extra bandwidth and remove any protections against accidently issuing the same transaction multiple <span class="built_in">times</span></span><br><span class="line">  -s,--skip-sign              Specify <span class="keyword">if</span> unlocked wallet keys should be used to sign transaction</span><br><span class="line">  -j,--json                   <span class="built_in">print</span> result as json</span><br><span class="line">  -d,--dont-broadcast         don<span class="string">'t broadcast transaction to the network (just print to stdout)</span></span><br><span class="line"><span class="string">  -r,--ref-block TEXT         set the reference block num or block id used for TAPOS (Transaction as Proof-of-Stake)</span></span><br><span class="line"><span class="string">  -p,--permission TEXT ...    An account and permission level to authorize, as in '</span>account@permission<span class="string">' (defaults to '</span>account@active<span class="string">')</span></span><br><span class="line"><span class="string">  --max-cpu-usage-ms UINT     set an upper limit on the milliseconds of cpu usage budget, for the execution of the transaction (defaults to 0 which means no limit)</span></span><br><span class="line"><span class="string">  --max-net-usage UINT        set an upper limit on the net usage budget, in bytes, for the transaction (defaults to 0 which means no limit)</span></span><br></pre></td></tr></table></figure>
+<h3 id="wallet"><a href="#wallet" class="headerlink" title="wallet"></a>wallet</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet</span><br><span class="line">ERROR: RequiredError: Subcommand required</span><br><span class="line">Interact with <span class="built_in">local</span> wallet</span><br><span class="line">Usage: cleos wallet SUBCOMMAND</span><br><span class="line"></span><br><span class="line">Subcommands:</span><br><span class="line">  create                      Create a new wallet locally</span><br><span class="line">  open                        Open an existing wallet</span><br><span class="line">  lock                        Lock wallet</span><br><span class="line">  lock_all                    Lock all unlocked wallets</span><br><span class="line">  unlock                      Unlock wallet</span><br><span class="line">  import                      Import private key into wallet</span><br><span class="line">  create_key                  Create private key within wallet</span><br><span class="line">  list                        List opened wallets, * = unlocked</span><br><span class="line">  keys                        List of private keys from all unlocked wallets <span class="keyword">in</span> wif format.</span><br><span class="line">  stop                        Stop keosd (doesn<span class="string">'t work with nodeos).</span></span><br></pre></td></tr></table></figure>
+<h4 id="cleos-wallet-create"><a href="#cleos-wallet-create" class="headerlink" title="cleos wallet create"></a>cleos wallet create</h4><p>&nbsp; &nbsp; 通过 <code>-n</code> 指定相应的钱包的名字<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet create -n <span class="built_in">test</span></span><br><span class="line">Creating wallet: <span class="built_in">test</span></span><br><span class="line">Save password to use <span class="keyword">in</span> the future to unlock this wallet.</span><br><span class="line">Without password imported keys will not be retrievable.</span><br><span class="line"><span class="string">"PW5KAtHkMefgjDXPj68FRQ3XFxzu1ZzwqupWmPGsNwbZxxZHgBsg4"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="cleos-wallet-open"><a href="#cleos-wallet-open" class="headerlink" title="cleos wallet open"></a>cleos wallet open</h4><p>&nbsp; &nbsp; 通过 <code>-n</code> 打开相应的钱包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet open</span><br><span class="line">Opened: default</span><br><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet open -n <span class="built_in">test</span></span><br><span class="line">Opened: <span class="built_in">test</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="cleos-wallet-lock"><a href="#cleos-wallet-lock" class="headerlink" title="cleos wallet lock"></a>cleos wallet lock</h4><p>&nbsp; &nbsp;通过 <code>-n</code> 打开相应的钱包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet lock</span><br><span class="line">Locked: default</span><br><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet lock -n <span class="built_in">test</span></span><br><span class="line">Locked: <span class="built_in">test</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="cleos-wallet-lock-all"><a href="#cleos-wallet-lock-all" class="headerlink" title="cleos wallet lock_all"></a>cleos wallet lock_all</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet lock_all</span><br><span class="line">Locked All Wallets</span><br></pre></td></tr></table></figure>
+<h4 id="cleos-wallet-unlock"><a href="#cleos-wallet-unlock" class="headerlink" title="cleos wallet unlock"></a>cleos wallet unlock</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet unlock -n <span class="built_in">test</span> --password PW5KAtHkMefgjDXPj68FRQ3XFxzu1ZzwqupWmPGsNwbZxxZHgBsg4</span><br><span class="line">Unlocked: <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<h4 id="cleos-wallet-import"><a href="#cleos-wallet-import" class="headerlink" title="cleos wallet import"></a>cleos wallet import</h4><p>&nbsp; &nbsp; 将 私钥 导入到钱包中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet import</span><br><span class="line">ERROR: RequiredError: key</span><br><span class="line">Import private key into wallet</span><br><span class="line">Usage: cleos wallet import [OPTIONS] key</span><br><span class="line"></span><br><span class="line">Positionals:</span><br><span class="line">  key TEXT                    Private key <span class="keyword">in</span> WIF format to import</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -n,--name TEXT              The name of the wallet to import key into</span><br></pre></td></tr></table></figure></p>
+<h4 id="cleos-wallet-list"><a href="#cleos-wallet-list" class="headerlink" title="cleos wallet list"></a>cleos wallet list</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet list</span><br><span class="line">Wallets:</span><br><span class="line">[</span><br><span class="line">  <span class="string">"default"</span>,</span><br><span class="line">  <span class="string">"test *"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h4 id="cleos-wallet-keys"><a href="#cleos-wallet-keys" class="headerlink" title="cleos wallet keys"></a>cleos wallet keys</h4><p>&nbsp; &nbsp;返回所有解锁钱包含有的公/私钥对<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos wallet keys</span><br><span class="line">[[</span><br><span class="line">    <span class="string">"EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV"</span>,</span><br><span class="line">    <span class="string">"5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3"</span></span><br><span class="line">  ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<h3 id="push"><a href="#push" class="headerlink" title="push"></a>push</h3><p>&nbsp; &nbsp; <code>cleos push action</code> 推送一条操作事务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mat@mat-virtual-machine:~/work/eos/eos/build/contracts$ cleos push action</span><br><span class="line">ERROR: RequiredError: account</span><br><span class="line">Push a transaction with a single action</span><br><span class="line">Usage: cleos push action [OPTIONS] account action data</span><br><span class="line"></span><br><span class="line">Positionals:</span><br><span class="line">  account TEXT                The account providing the contract to execute</span><br><span class="line">  action TEXT                 A JSON string or filename defining the action to execute on the contract</span><br><span class="line">  data TEXT                   The arguments to the contract</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -h,--<span class="built_in">help</span>                   Print this <span class="built_in">help</span> message and <span class="built_in">exit</span></span><br><span class="line">  -x,--expiration             <span class="built_in">set</span> the time <span class="keyword">in</span> seconds before a transaction expires, defaults to 30s</span><br><span class="line">  -f,--force-unique           force the transaction to be unique. this will consume extra bandwidth and remove any protections against accidently issuing the same transaction multiple <span class="built_in">times</span></span><br><span class="line">  -s,--skip-sign              Specify <span class="keyword">if</span> unlocked wallet keys should be used to sign transaction</span><br><span class="line">  -j,--json                   <span class="built_in">print</span> result as json</span><br><span class="line">  -d,--dont-broadcast         don<span class="string">'t broadcast transaction to the network (just print to stdout)</span></span><br><span class="line"><span class="string">  -r,--ref-block TEXT         set the reference block num or block id used for TAPOS (Transaction as Proof-of-Stake)</span></span><br><span class="line"><span class="string">  -p,--permission TEXT ...    An account and permission level to authorize, as in '</span>account@permission<span class="string">'</span></span><br><span class="line"><span class="string">  --max-cpu-usage-ms UINT     set an upper limit on the milliseconds of cpu usage budget, for the execution of the transaction (defaults to 0 which means no limit)</span></span><br><span class="line"><span class="string">  --max-net-usage UINT        set an upper limit on the net usage budget, in bytes, for the transaction (defaults to 0 which means no limit)</span></span><br></pre></td></tr></table></figure></p>
+<p>原文链接：（本文还有很多命令都没实现，需要继续研究）<br>从零到壹学习EOS - cleos 命令<a href="http://liyuechun.org/2018/04/19/eos-cleos/" target="_blank" rel="noopener">enter link description here</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/dawn-hello/" rel="next" title="从零到壹学习EOS - EOS DAWN-v4.1.0 智能合约开发之Hello World">
+                <i class="fa fa-chevron-left"></i> 从零到壹学习EOS - EOS DAWN-v4.1.0 智能合约开发之Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ShichaoXu</p>
+              <p class="site-description motion-element" itemprop="description">All About Blockchain</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:gudujianjsk@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看-cleos-命令"><span class="nav-number">1.</span> <span class="nav-text">查看 cleos 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#version"><span class="nav-number">1.1.</span> <span class="nav-text">version</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#create"><span class="nav-number">1.2.</span> <span class="nav-text">create</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-create-key"><span class="nav-number">1.2.1.</span> <span class="nav-text">cleos create key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-create-account"><span class="nav-number">1.2.2.</span> <span class="nav-text">cleos create account</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get"><span class="nav-number">1.3.</span> <span class="nav-text">get</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-get-info"><span class="nav-number">1.3.1.</span> <span class="nav-text">cleos get info</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-get-block"><span class="nav-number">1.3.2.</span> <span class="nav-text">cleos get block</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-get-account"><span class="nav-number">1.3.3.</span> <span class="nav-text">cleos get account</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-get-code"><span class="nav-number">1.3.4.</span> <span class="nav-text">cleos get code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-get-table"><span class="nav-number">1.3.5.</span> <span class="nav-text">cleos get table</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cleos-get-currency"><span class="nav-number">1.4.</span> <span class="nav-text">cleos get currency</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-get-currency-balance"><span class="nav-number">1.4.1.</span> <span class="nav-text">cleos get currency balance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-get-currency-stats"><span class="nav-number">1.4.2.</span> <span class="nav-text">cleos get currency stats</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-get-accounts"><span class="nav-number">1.4.3.</span> <span class="nav-text">cleos get accounts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-get-servants"><span class="nav-number">1.4.4.</span> <span class="nav-text">cleos get servants</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-get-transactions"><span class="nav-number">1.4.5.</span> <span class="nav-text">cleos get transactions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">1.5.</span> <span class="nav-text">set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-set-contract"><span class="nav-number">1.5.1.</span> <span class="nav-text">cleos set contract</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wallet"><span class="nav-number">1.6.</span> <span class="nav-text">wallet</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-wallet-create"><span class="nav-number">1.6.1.</span> <span class="nav-text">cleos wallet create</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-wallet-open"><span class="nav-number">1.6.2.</span> <span class="nav-text">cleos wallet open</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-wallet-lock"><span class="nav-number">1.6.3.</span> <span class="nav-text">cleos wallet lock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-wallet-lock-all"><span class="nav-number">1.6.4.</span> <span class="nav-text">cleos wallet lock_all</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-wallet-unlock"><span class="nav-number">1.6.5.</span> <span class="nav-text">cleos wallet unlock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-wallet-import"><span class="nav-number">1.6.6.</span> <span class="nav-text">cleos wallet import</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-wallet-list"><span class="nav-number">1.6.7.</span> <span class="nav-text">cleos wallet list</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cleos-wallet-keys"><span class="nav-number">1.6.8.</span> <span class="nav-text">cleos wallet keys</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push"><span class="nav-number">1.7.</span> <span class="nav-text">push</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ShichaoXu</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
